@@ -37,6 +37,9 @@ public class DebitCard {
         atmAccounts.add(account);
     }
 
+    public String toString() {
+        return "cardNum: " + cardNum;
+    }
 }
 
 // create a Client class

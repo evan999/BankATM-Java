@@ -1,9 +1,11 @@
 package Bank;
 
 import BankAccount.Account;
+import BankAccount.CheckingAccount;
 import BankTools.DebitCard;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Client {
@@ -13,7 +15,7 @@ public class Client {
     private String middleName;
     private String clientId;
     //    private String Address
-    private List<Account> accounts;
+    private HashMap<Integer, Account> accounts;
     private List<DebitCard> debitCards;
 //    private List<CheckingAccount> checkingAccounts;
 //    private List<SavingsAccount> savingsAccounts;
@@ -24,7 +26,7 @@ public class Client {
         this.firstName = firstName;
         this.lastName = lastName;
         this.clientId = clientId;
-        accounts = new ArrayList<>();
+        accounts = new HashMap<>();
         debitCards = new ArrayList<>();
 //        this.checkingAccounts = new ArrayList<CheckingAccount>();
 //        this.savingsAccounts = new ArrayList<SavingsAccount>();
@@ -32,14 +34,34 @@ public class Client {
     }
 
     public void addAccount(Account account) {
-        accounts.add(account);
+        accounts.put(account.getAccountNum(), account);
     }
 
     public void addDebitCard(int accountNum) {
         // Look up account by accountNum
         // Add debit card to account.
-      
+        Account account = accounts.get(accountNum);
+        if(account instanceof CheckingAccount) {
+            DebitCard newCard = new DebitCard("12341234", "1234", "987", this.name, (CheckingAccount) account);
+            debitCards.add(newCard);
+        }
+        else{
+            System.out.println("Invalid account");
+        }
 //        DebitCard newCard = new DebitCard()
+    }
+
+    @Override
+    public String toString(){
+        String output = "";
+        for (int accountNum : accounts.keySet()){
+            output += accounts.get(accountNum).getDetails() + "\n";
+        }
+        String cardsOutput = "";
+        for (var debitCard : debitCards) {
+            cardsOutput += debitCard.toString();
+        }
+        return "Accounts of " + name + "\n" + output + "Cards\n" + cardsOutput;
     }
 
 //    public void addAccount(CheckingAccount account) {
