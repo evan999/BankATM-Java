@@ -25,7 +25,7 @@ public class DebitCard {
         atmAccounts = new ArrayList<>();
     }
 
-    public Boolean charge(int amt, String pin) {
+    public boolean charge(int amt, String pin) {
         if (this.pin == pin && primary.getBalance() >= amt) {
             primary.withdraw(amt);
             return true;

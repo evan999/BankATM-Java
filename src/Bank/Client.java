@@ -64,6 +64,7 @@ public class Client {
         return "Accounts of " + name + "\n" + output + "Cards\n" + cardsOutput;
     }
 
+
 //    public void addAccount(CheckingAccount account) {
 //        checkingAccounts.add(account);
 //    }
