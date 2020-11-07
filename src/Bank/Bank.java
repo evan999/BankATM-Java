@@ -26,10 +26,6 @@ public class Bank {
         clients.put(clientCount.toString(), new Client(firstName, lastName, clientCount.toString()));
     }
 
-    public void getClient(String clientId){
-
-    }
-
     // Minimum: Come up with
     public void addAccount(String clientId, String accountType, int startingBalance, UI ui){
         // TODO: get client
